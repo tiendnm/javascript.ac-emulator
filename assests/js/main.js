@@ -8,6 +8,7 @@ const swingElement = document.getElementById("swing");
 const temperatureElement = document.getElementById("temperature");
 const decreaseTemperatureButton = document.getElementById("btn-decrease-temp");
 const increaseTemperatureButton = document.getElementById("btn-increase-temp");
+const AudioElement = new Audio('./assests/audio/AirConditionerRunningSound.mp3');
 /**
  * FUNCTION
  */
@@ -16,6 +17,14 @@ const intervalManager = (flag, animate, time) => {
         intervalID = setInterval(animate, time);
     else
         clearInterval(intervalID);
+}
+const hihi = () => {
+    AudioElement.play();
+
+}
+const haha = () => {
+    AudioElement.pause();
+    AudioElement.currentTime = 0;
 }
 /**
  * CLASS
@@ -32,6 +41,13 @@ class AirConditioner {
     constructor() {
         this.#setTemp()
     }
+    #playAirConditionerSound() {
+
+    }
+    #playRemoteBeepSound() {
+        const BeepAudio = new Audio('./assests/audio/RemoteBeepSound.mp3');
+        BeepAudio.play();
+    }
     #swing() {
         swingElement.style.transform = `rotateX(${this._swingDegree}deg)`;
     }
@@ -44,30 +60,48 @@ class AirConditioner {
         this.#swing();
     }
     #setTemp() {
-        temperatureElement.textContent = this._currentTemperature
+        if (this._isPowerOn) {
+
+            temperatureElement.textContent = this._currentTemperature
+        } else {
+            temperatureElement.textContent = ""
+        }
+
     }
     togglePower() {
+        this.#playRemoteBeepSound()
         this._isPowerOn = !this._isPowerOn;
         this.#triggerRun();
     }
     toggleSwing() {
+
         if (this._isPowerOn) {
+            this.#playRemoteBeepSound()
             this._isSwing = !this._isSwing;
         }
     }
     increaseTemperature() {
-        if (this._currentTemperature < this._maxTemperature) {
-            this._currentTemperature += 1;
-            this.#setTemp()
+        if (this._isPowerOn) {
+            this.#playRemoteBeepSound()
+            if (this._currentTemperature < this._maxTemperature) {
+                this._currentTemperature += 1;
+                this.#setTemp()
+            }
         }
+
     }
     decreaseTemperature() {
-        if (this._currentTemperature > this._minTemperature) {
-            this._currentTemperature -= 1;
-            this.#setTemp()
+        if (this._isPowerOn) {
+            this.#playRemoteBeepSound()
+            if (this._currentTemperature > this._minTemperature) {
+                this._currentTemperature -= 1;
+                this.#setTemp()
+            }
         }
+
     }
     #triggerRun() {
+        this.#setTemp()
         intervalManager(false);
         //================================
         if (this._isPowerOn) {
@@ -79,6 +113,7 @@ class AirConditioner {
         }
     }
     #powerOn() {
+        hihi()
         this._isSwingBack = false;
         intervalManager(true,
             () => {
@@ -101,6 +136,7 @@ class AirConditioner {
         )
     }
     #powerOff() {
+        haha()
         intervalManager(true,
             () => {
                 if (this._swingDegree == 0) {
@@ -129,3 +165,7 @@ decreaseTemperatureButton.addEventListener("click", () => {
 increaseTemperatureButton.addEventListener("click", () => {
     myAirConditioner.increaseTemperature();
 });
+AudioElement.addEventListener('ended', function () {
+    this.currentTime = 0;
+    this.play();
+}, false);
