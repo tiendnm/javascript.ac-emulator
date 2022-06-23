@@ -40,6 +40,43 @@
             bottom: 0;
         }
 
+        .position-absolute {
+            position: absolute;
+        }
+
+        #btn-toggle-power {
+
+            left: 17%;
+            top: 42.5%;
+            height: 6.5%;
+            width: 18%;
+            border-radius: 25px;
+        }
+
+        #btn-decrease-temp {
+            left: 17%;
+            top: 58.5%;
+            height: 6.5%;
+            width: 18%;
+            border-radius: 25px;
+        }
+
+        #btn-increase-temp {
+            left: 17%;
+            top: 50.5%;
+            height: 6.5%;
+            width: 18%;
+            border-radius: 25px;
+        }
+
+        #btn-toggle-swing {
+            right: 15%;
+            top: 42.5%;
+            height: 6.5%;
+            width: 18%;
+            border-radius: 25px;
+        }
+
         .text-center {
             text-align: center;
         }
@@ -70,6 +107,11 @@
             margin-right: auto;
             margin-left: auto;
         }
+
+        .transparent {
+            background-color: transparent;
+            border: none
+        }
     </style>
 </head>
 
@@ -80,15 +122,16 @@
         <img class="w-100 mw-500 swing " id="swing" src="./assests/img/swing.png" alt="air-conditioner">
         <span class="font-7-led led-on-air-conditioner" id="temperature">17</span>
     </div>
-    <div class="text-center w-100 mw-500 my-auto">
-        <button id="btn-toggle-power">toggle power</button>
-        <button id="btn-toggle-swing">toggle swing</button>
-        <button id="btn-decrease-temp">decrease temp</button>
-        <button id="btn-increase-temp">increase temp</button>
-
+    <div class="text-center position-relative w-100 mw-200 my-auto">
+        <img class="w-100 mw-200 d-block" src="./assests/img/wireless-controller-copy-31319276.png"
+            alt="air-conditioner">
+        <button class="position-absolute transparent" id="btn-toggle-power"> </button>
+        <button class="position-absolute transparent" id="btn-toggle-swing"> </button>
+        <button class="position-absolute transparent" id="btn-decrease-temp"> </button>
+        <button class="position-absolute transparent" id="btn-increase-temp"> </button>
     </div>
     <!-- <div class="img-wrapper text-center w-100 mw-500">
-        <img class="w-100 mw-200" src="./assests/img/wireless-controller-copy-31319276.png" alt="air-conditioner">
+        
     </div> -->
 
 
