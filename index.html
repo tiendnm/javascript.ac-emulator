@@ -12,13 +12,24 @@
         .led-on-air-conditioner {
             position: absolute;
             right: 15%;
-            bottom: 45%
+            bottom: 45%;
+            color: #d5d6d8;
+            background: rgb(255, 255, 255);
+            background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 97%, rgba(213, 214, 216, 1) 97%);
+
+        }
+
+        #temp-on-remote {
+            bottom: 68%;
+            right: 22%;
+            font-size: 50px;
+            position: absolute;
+            color: #48494d;
+            background: black;
         }
 
         .font-7-led {
             font-family: '7LED', sans-serif;
-            color: #d5d6d8;
-            background-color: rgb(235, 117, 6);
         }
 
 
@@ -70,7 +81,7 @@
         }
 
         #btn-decrease-fan {
-            right: 15%;
+            right: 13.7%;
             top: 58.5%;
             height: 6.5%;
             width: 18%;
@@ -78,7 +89,7 @@
         }
 
         #btn-increase-fan {
-            right: 15%;
+            right: 13.7%;
             top: 50.5%;
             height: 6.5%;
             width: 18%;
@@ -139,6 +150,13 @@
             left: 0;
             top: 0;
         }
+
+        #swinging,
+        #noswing {
+            bottom: 85%;
+            width: 11%;
+            left: 26%;
+        }
     </style>
 </head>
 
@@ -154,6 +172,9 @@
             alt="air-conditioner">
         <img class="w-100 mw-200" id="light-overlay" src="./assests/img/wireless-controller-copy-light.png"
             alt="air-conditioner">
+        <img class="position-absolute" id="swinging" src="./assests/img/swinging.png">
+        <img class="position-absolute" id="noswing" src="./assests/img/no-swing.png">
+        <span class="font-7-led" id="temp-on-remote"></span>
         <button class="position-absolute transparent" id="btn-toggle-power"> </button>
         <button class="position-absolute transparent" id="btn-toggle-swing"> </button>
         <button class="position-absolute transparent" id="btn-decrease-temp"> </button>

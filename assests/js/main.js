@@ -8,10 +8,13 @@ const swingButton = document.getElementById("btn-toggle-swing");
 const powerButton = document.getElementById("btn-toggle-power");
 const swingElement = document.getElementById("swing");
 const temperatureElement = document.getElementById("temperature");
+const temperatureOnRemote = document.getElementById("temp-on-remote")
 const decreaseTemperatureButton = document.getElementById("btn-decrease-temp");
 const increaseTemperatureButton = document.getElementById("btn-increase-temp");
 const decreaseFanButton = document.getElementById("btn-decrease-fan");
 const increaseFanButton = document.getElementById("btn-increase-fan");
+const swinging = document.getElementById("swinging");
+const noswing = document.getElementById("noswing");
 const AudioElement = new Audio('./assests/audio/AirConditionerRunningSound.mp3');
 const lightOverlay = document.getElementById("light-overlay");
 let clickCountDown = 10;
@@ -42,6 +45,8 @@ class AirConditioner {
     constructor() {
         this.#setTemp();
         lightOverlay.style.display = "none";
+        swinging.style.display = "none";
+        noswing.style.display = "none";
         const localtemp = localStorage.getItem("temp");
         const localfanlevel = localStorage.getItem("fan");
         if (!localtemp) {
@@ -55,14 +60,31 @@ class AirConditioner {
             this._currentFanLevel = parseInt(localfanlevel)
         }
     }
+    #showSwing() {
+        swinging.style.display = "block";
+        noswing.style.display = "none";
+    }
+    #showNoSwing() {
+        swinging.style.display = "none";
+        noswing.style.display = "block";
+    }
     #showLight() {
         clearInterval(intervalLoopLight);
         clickCountDown = 10
         lightOverlay.style.display = "block";
+        swinging.style.opacity = "1"
+        noswing.style.opacity = "1"
+        temperatureOnRemote.style.opacity = "1"
+        temperatureOnRemote.style.color = "#7c693e"
         intervalLoopLight = setInterval(() => {
             clickCountDown--;
             if (clickCountDown == 0) {
                 lightOverlay.style.display = "none";
+                swinging.style.opacity = ".6"
+                noswing.style.opacity = ".6"
+                temperatureOnRemote.style.opacity = ".6"
+                temperatureOnRemote.style.color = "#48494d"
+
                 clearInterval(intervalLoopLight);
             }
         }, 300);
@@ -98,8 +120,10 @@ class AirConditioner {
     #setTemp() {
         if (this._isPowerOn) {
             temperatureElement.textContent = this._currentTemperature
+            temperatureOnRemote.textContent = this._currentTemperature
         } else {
             temperatureElement.textContent = ""
+            temperatureOnRemote.textContent = ""
         }
     }
     #setFan() {
@@ -178,11 +202,14 @@ class AirConditioner {
         }
     }
     #powerOn() {
-        this.#playAirConditionerSound()
+        this.#playAirConditionerSound();
+        swinging.style.display = "block";
+        noswing.style.display = "block";
         this._isSwingBack = false;
         intervalManager(true,
             () => {
                 if (this._isSwing) {
+                    this.#showSwing()
                     if (this._isSwingBack) {
                         this.#decreaseSwingDegree();
                         if (this._swingDegree == 0) {
@@ -195,13 +222,23 @@ class AirConditioner {
                             this._isSwingBack = true;
                         }
                     }
+                    localStorage.removeItem("swing");
+                } else {
+                    this.#showNoSwing();
+                    const localSwing = localStorage.getItem("swing");
+                    if (localSwing && this._swingDegree != parseInt(localSwing)) {
+                        this.#increaseSwingDegree();
+                    }
                 }
             },
             7200 / 360
         )
     }
     #powerOff() {
-        this.#stopAirConditionerSound()
+        localStorage.setItem("swing", this._swingDegree);
+        this.#stopAirConditionerSound();
+        swinging.style.display = "none";
+        noswing.style.display = "none";
         intervalManager(true,
             () => {
                 if (this._swingDegree == 0) {
