@@ -17,6 +17,8 @@ const swinging = document.getElementById("swinging");
 const noswing = document.getElementById("noswing");
 const AudioElement = new Audio('./assests/audio/AirConditionerRunningSound.mp3');
 const lightOverlay = document.getElementById("light-overlay");
+const levelfan = document.getElementById("levelfan")
+const levelfanChildren = levelfan.children[0].children;
 let clickCountDown = 10;
 /**
  * FUNCTION
@@ -47,6 +49,7 @@ class AirConditioner {
         lightOverlay.style.display = "none";
         swinging.style.display = "none";
         noswing.style.display = "none";
+        levelfan.style.display = "none";
         const localtemp = localStorage.getItem("temp");
         const localfanlevel = localStorage.getItem("fan");
         if (!localtemp) {
@@ -59,6 +62,7 @@ class AirConditioner {
         } else {
             this._currentFanLevel = parseInt(localfanlevel)
         }
+        this.#setFan()
     }
     #showSwing() {
         swinging.style.display = "block";
@@ -104,6 +108,7 @@ class AirConditioner {
     }
     #playRemoteBeepSound() {
         const BeepAudio = new Audio('./assests/audio/RemoteBeepSound.mp3');
+        BeepAudio.volume = 0.1;
         BeepAudio.play();
     }
     #swing() {
@@ -127,9 +132,21 @@ class AirConditioner {
         }
     }
     #setFan() {
-        if (this._isPowerOn) {
-            console.log(this._currentFanLevel)
+        localStorage.setItem("fan", this._currentFanLevel);
+        const lowerNodes = Array.from(levelfanChildren).filter((x, i) => i <= this._currentFanLevel - 1);
+        const higherNodes = Array.from(levelfanChildren).filter((x, i) => i > this._currentFanLevel - 1);
+        if (this._currentFanLevel == 5) {
+            AudioElement.volume = 1
+        } else {
+            AudioElement.volume = this._currentFanLevel / 5 + 0.1
         }
+        for (let item of lowerNodes) {
+            item.style.display = "block"
+        }
+        for (let item of higherNodes) {
+            item.style.display = "none"
+        }
+
     }
     togglePower() {
         this.#playRemoteBeepSound();
@@ -205,6 +222,7 @@ class AirConditioner {
         this.#playAirConditionerSound();
         swinging.style.display = "block";
         noswing.style.display = "block";
+        levelfan.style.display = "block";
         this._isSwingBack = false;
         intervalManager(true,
             () => {
@@ -239,6 +257,7 @@ class AirConditioner {
         this.#stopAirConditionerSound();
         swinging.style.display = "none";
         noswing.style.display = "none";
+        levelfan.style.display = "none";
         intervalManager(true,
             () => {
                 if (this._swingDegree == 0) {

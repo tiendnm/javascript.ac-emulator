@@ -157,6 +157,25 @@
             width: 11%;
             left: 26%;
         }
+
+
+
+
+        .progress-container {
+            display: flex;
+            gap: 3px;
+        }
+
+        .square {
+            background-color: black;
+            width: 10px;
+            height: 17px;
+        }
+
+        #levelfan {
+            bottom: 63%;
+            left: 45%;
+        }
     </style>
 </head>
 
@@ -181,6 +200,15 @@
         <button class="position-absolute transparent" id="btn-increase-temp"> </button>
         <button class="position-absolute transparent" id="btn-decrease-fan"> </button>
         <button class="position-absolute transparent" id="btn-increase-fan"> </button>
+        <div class="position-absolute" id="levelfan">
+            <div class="progress-container">
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+            </div>
+        </div>
     </div>
     <!-- <div class="img-wrapper text-center w-100 mw-500">
         
