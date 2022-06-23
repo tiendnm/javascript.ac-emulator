@@ -45,7 +45,6 @@ class AirConditioner {
     _maxFanLevel = 5;
     _minFanLevel = 1;
     constructor() {
-        this.#setTemp();
         lightOverlay.style.display = "none";
         swinging.style.display = "none";
         noswing.style.display = "none";
@@ -62,7 +61,9 @@ class AirConditioner {
         } else {
             this._currentFanLevel = parseInt(localfanlevel)
         }
-        this.#setFan()
+        this.#setFan();
+        this.#setTemp();
+
     }
     #showSwing() {
         swinging.style.display = "block";
