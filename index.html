@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .w-100 {
+            width: 100%;
+        }
+
+        .mw-500 {
+            max-width: 500px;
+        }
+
+        .mw-200 {
+            max-width: 200px;
+        }
+
+        #swing {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        img {
+            -webkit-user-select: none;
+            /* Safari */
+            -ms-user-select: none;
+            /* IE 10 and IE 11 */
+            user-select: none;
+            /* Standard syntax */
+            pointer-events: none
+        }
+
+        .position-relative {
+            position: relative;
+        }
+
+        .border-solid {
+            border: 1px solid
+        }
+
+        .d-block {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img-wrapper position-relative">
+        <img class="w-100 mw-500  d-block" src="/assests/img/Split-Air-Conditioner-PNG-High-Quality-Image.png"
+            alt="air-conditioner">
+        <img class="w-100 mw-500 swing " id="swing" src="/assests/img/swing.png" alt="air-conditioner">
+    </div>
+    <div>
+        <button id="togglepower">toggle power</button>
+        <button id="stop_swing">stop_swing</button>
+    </div>
+    <div class="img-wrapper text-center w-100 mw-500">
+        <img class="w-100 mw-200" src="/assests/img/wireless-controller-copy-31319276.png" alt="air-conditioner">
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        let swing_degree = 0;
+        let stopstate = false;
+        let timer = null;
+        let isOn = false;
+        let revert = false;
+        const swingElement = document.getElementById("swing");
+        const triggerswing = degree => swingElement.style.transform = "rotatex(" + degree + "deg)";
+        const triggerAirConditioner = () => {
+            if (isOn) { // bật máy lạnh
+                timer = setInterval(() => {
+                    if (!stopstate) { // nếu đang bật
+                        if (revert) {
+                            swing_degree -= 1;
+                        } else {
+                            swing_degree += 1;
+                        }
+                        triggerswing(swing_degree);
+                        if (swing_degree == 0) {
+                            revert = false;
+                            swing_degree = 0;
+                            clearInterval(timer);
+                            triggerAirConditioner()
+                        }
+                        if (swing_degree == 180) {
+                            revert = true;
+                        }
+                    }
+                    if (stopstate) {
+                        if (swing_degree < 100) {
+                            swing_degree += 1;
+                            triggerswing(swing_degree);
+                        }
+                        if (swing_degree == 100) {
+                            clearInterval(timer);
+                        }
+
+                    }
+                }, 7200 / 360);
+            } else { // tắt máy lạnh
+                timer = setInterval(() => {
+                    if (swing_degree == 0) {
+                        clearInterval(timer);
+                    } else {
+                        swing_degree -= 1;
+                        triggerswing(swing_degree);
+                    }
+                }, 7200 / 360);
+            }
+
+        }
+
+        const stop_swing = () => {
+            if (!stopstate) {
+                stopstate = true;
+            } else {
+                stopstate = false;
+                triggerAirConditioner();
+            }
+        }
+        triggerAirConditioner();
+        $("#stop_swing").on("click", e => {
+            stop_swing()
+        });
+        $("#togglepower").on("click", e => {
+            isOn = !isOn;
+            clearInterval(timer);
+            triggerAirConditioner()
+        });
+    </script>
+
+</body>
+
+</html>
