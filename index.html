@@ -69,6 +69,22 @@
             border-radius: 25px;
         }
 
+        #btn-decrease-fan {
+            right: 15%;
+            top: 58.5%;
+            height: 6.5%;
+            width: 18%;
+            border-radius: 25px;
+        }
+
+        #btn-increase-fan {
+            right: 15%;
+            top: 50.5%;
+            height: 6.5%;
+            width: 18%;
+            border-radius: 25px;
+        }
+
         #btn-toggle-swing {
             right: 15%;
             top: 42.5%;
@@ -112,6 +128,17 @@
             background-color: transparent;
             border: none
         }
+
+        .transparent:hover {
+            background-color: rgba(0, 0, 0, 0.075);
+            border: none
+        }
+
+        #light-overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
     </style>
 </head>
 
@@ -125,10 +152,14 @@
     <div class="text-center position-relative w-100 mw-200 my-auto">
         <img class="w-100 mw-200 d-block" src="./assests/img/wireless-controller-copy-31319276.png"
             alt="air-conditioner">
+        <img class="w-100 mw-200" id="light-overlay" src="./assests/img/wireless-controller-copy-light.png"
+            alt="air-conditioner">
         <button class="position-absolute transparent" id="btn-toggle-power"> </button>
         <button class="position-absolute transparent" id="btn-toggle-swing"> </button>
         <button class="position-absolute transparent" id="btn-decrease-temp"> </button>
         <button class="position-absolute transparent" id="btn-increase-temp"> </button>
+        <button class="position-absolute transparent" id="btn-decrease-fan"> </button>
+        <button class="position-absolute transparent" id="btn-increase-fan"> </button>
     </div>
     <!-- <div class="img-wrapper text-center w-100 mw-500">
         
