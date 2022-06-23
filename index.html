@@ -7,7 +7,6 @@
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background-color: black;
         }
 
         .led-on-air-conditioner {
@@ -66,17 +65,22 @@
         .d-block {
             display: block;
         }
+
+        .my-auto {
+            margin-right: auto;
+            margin-left: auto;
+        }
     </style>
 </head>
 
 <body>
-    <div class="img-wrapper position-relative w-100 mw-500">
+    <div class="img-wrapper position-relative w-100 mw-500 my-auto">
         <img class="w-100 mw-500 d-block" src="./assests/img/Split-Air-Conditioner-PNG-High-Quality-Image.png"
             alt="air-conditioner">
         <img class="w-100 mw-500 swing " id="swing" src="./assests/img/swing.png" alt="air-conditioner">
         <span class="font-7-led led-on-air-conditioner" id="temperature">17</span>
     </div>
-    <div class="text-center w-100 mw-500">
+    <div class="text-center w-100 mw-500 my-auto">
         <button id="btn-toggle-power">toggle power</button>
         <button id="btn-toggle-swing">toggle swing</button>
         <button id="btn-decrease-temp">decrease temp</button>
