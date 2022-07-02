@@ -1,0 +1,170 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.pointer{
+    cursor: pointer;
+}
+.led-on-air-conditioner {
+    position: absolute;
+    right: 15%;
+    bottom: 45%;
+    color: #d5d6d8;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 97%, rgba(213, 214, 216, 1) 97%);
+
+}
+
+#temp-on-remote {
+    bottom: 68%;
+    right: 22%;
+    font-size: 50px;
+    position: absolute;
+    color: #48494d;
+    background: black;
+}
+
+.font-7-led {
+    font-family: '7LED', sans-serif;
+}
+
+
+.w-100 {
+    width: 100%;
+}
+
+.mw-500 {
+    max-width: 500px;
+}
+
+.mw-200 {
+    max-width: 200px;
+}
+
+#swing {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+#btn-toggle-power {
+
+    left: 17%;
+    top: 42.5%;
+    height: 6.5%;
+    width: 18%;
+    border-radius: 25px;
+}
+
+#btn-decrease-temp {
+    left: 17%;
+    top: 58.5%;
+    height: 6.5%;
+    width: 18%;
+    border-radius: 25px;
+}
+
+#btn-increase-temp {
+    left: 17%;
+    top: 50.5%;
+    height: 6.5%;
+    width: 18%;
+    border-radius: 25px;
+}
+
+#btn-decrease-fan {
+    right: 13.7%;
+    top: 58.5%;
+    height: 6.5%;
+    width: 18%;
+    border-radius: 25px;
+}
+
+#btn-increase-fan {
+    right: 13.7%;
+    top: 50.5%;
+    height: 6.5%;
+    width: 18%;
+    border-radius: 25px;
+}
+
+#btn-toggle-swing {
+    right: 15%;
+    top: 42.5%;
+    height: 6.5%;
+    width: 18%;
+    border-radius: 25px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+img {
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+    pointer-events: none
+}
+
+.position-relative {
+    position: relative;
+}
+
+.border-solid {
+    border: 1px solid
+}
+
+.d-block {
+    display: block;
+}
+
+.my-auto {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.transparent {
+    background-color: transparent;
+    border: none
+}
+
+.transparent:hover {
+    background-color: rgba(0, 0, 0, 0.075);
+    border: none
+}
+
+#light-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#swinging,
+#noswing {
+    bottom: 85%;
+    width: 11%;
+    left: 26%;
+}
+
+.progress-container {
+    display: flex;
+    gap: 3px;
+}
+
+.square {
+    background-color: black;
+    width: 10px;
+    height: 17px;
+}
+
+#levelfan {
+    bottom: 63%;
+    left: 45%;
+}

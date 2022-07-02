@@ -4,179 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.cdnfonts.com/css/7-led" rel="stylesheet">
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        .led-on-air-conditioner {
-            position: absolute;
-            right: 15%;
-            bottom: 45%;
-            color: #d5d6d8;
-            background: rgb(255, 255, 255);
-            background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 97%, rgba(213, 214, 216, 1) 97%);
-
-        }
-
-        #temp-on-remote {
-            bottom: 68%;
-            right: 22%;
-            font-size: 50px;
-            position: absolute;
-            color: #48494d;
-            background: black;
-        }
-
-        .font-7-led {
-            font-family: '7LED', sans-serif;
-        }
-
-
-        .w-100 {
-            width: 100%;
-        }
-
-        .mw-500 {
-            max-width: 500px;
-        }
-
-        .mw-200 {
-            max-width: 200px;
-        }
-
-        #swing {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-        }
-
-        .position-absolute {
-            position: absolute;
-        }
-
-        #btn-toggle-power {
-
-            left: 17%;
-            top: 42.5%;
-            height: 6.5%;
-            width: 18%;
-            border-radius: 25px;
-        }
-
-        #btn-decrease-temp {
-            left: 17%;
-            top: 58.5%;
-            height: 6.5%;
-            width: 18%;
-            border-radius: 25px;
-        }
-
-        #btn-increase-temp {
-            left: 17%;
-            top: 50.5%;
-            height: 6.5%;
-            width: 18%;
-            border-radius: 25px;
-        }
-
-        #btn-decrease-fan {
-            right: 13.7%;
-            top: 58.5%;
-            height: 6.5%;
-            width: 18%;
-            border-radius: 25px;
-        }
-
-        #btn-increase-fan {
-            right: 13.7%;
-            top: 50.5%;
-            height: 6.5%;
-            width: 18%;
-            border-radius: 25px;
-        }
-
-        #btn-toggle-swing {
-            right: 15%;
-            top: 42.5%;
-            height: 6.5%;
-            width: 18%;
-            border-radius: 25px;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        img {
-            -webkit-user-select: none;
-            /* Safari */
-            -ms-user-select: none;
-            /* IE 10 and IE 11 */
-            user-select: none;
-            /* Standard syntax */
-            pointer-events: none
-        }
-
-        .position-relative {
-            position: relative;
-        }
-
-        .border-solid {
-            border: 1px solid
-        }
-
-        .d-block {
-            display: block;
-        }
-
-        .my-auto {
-            margin-right: auto;
-            margin-left: auto;
-        }
-
-        .transparent {
-            background-color: transparent;
-            border: none
-        }
-
-        .transparent:hover {
-            background-color: rgba(0, 0, 0, 0.075);
-            border: none
-        }
-
-        #light-overlay {
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-        #swinging,
-        #noswing {
-            bottom: 85%;
-            width: 11%;
-            left: 26%;
-        }
-
-
-
-
-        .progress-container {
-            display: flex;
-            gap: 3px;
-        }
-
-        .square {
-            background-color: black;
-            width: 10px;
-            height: 17px;
-        }
-
-        #levelfan {
-            bottom: 63%;
-            left: 45%;
-        }
-    </style>
+    <link href="./assests/css/site.css" rel="stylesheet">
 </head>
 
 <body>
@@ -187,19 +15,19 @@
         <span class="font-7-led led-on-air-conditioner" id="temperature">17</span>
     </div>
     <div class="text-center position-relative w-100 mw-200 my-auto">
-        <img class="w-100 mw-200 d-block" src="./assests/img/wireless-controller-copy-31319276.png"
+        <img class="w-100 mw-200 d-block " src="./assests/img/wireless-controller-copy-31319276.png"
             alt="air-conditioner">
-        <img class="w-100 mw-200" id="light-overlay" src="./assests/img/wireless-controller-copy-light.png"
+        <img class="w-100 mw-200 " id="light-overlay" src="./assests/img/wireless-controller-copy-light.png"
             alt="air-conditioner">
-        <img class="position-absolute" id="swinging" src="./assests/img/swinging.png">
-        <img class="position-absolute" id="noswing" src="./assests/img/no-swing.png">
+        <img class="position-absolute " id="swinging" src="./assests/img/swinging.png">
+        <img class="position-absolute " id="noswing" src="./assests/img/no-swing.png">
         <span class="font-7-led" id="temp-on-remote"></span>
-        <button class="position-absolute transparent" id="btn-toggle-power"> </button>
-        <button class="position-absolute transparent" id="btn-toggle-swing"> </button>
-        <button class="position-absolute transparent" id="btn-decrease-temp"> </button>
-        <button class="position-absolute transparent" id="btn-increase-temp"> </button>
-        <button class="position-absolute transparent" id="btn-decrease-fan"> </button>
-        <button class="position-absolute transparent" id="btn-increase-fan"> </button>
+        <button class="position-absolute transparent pointer" id="btn-toggle-power"> </button>
+        <button class="position-absolute transparent pointer" id="btn-toggle-swing"> </button>
+        <button class="position-absolute transparent pointer" id="btn-decrease-temp"> </button>
+        <button class="position-absolute transparent pointer" id="btn-increase-temp"> </button>
+        <button class="position-absolute transparent pointer" id="btn-decrease-fan"> </button>
+        <button class="position-absolute transparent pointer" id="btn-increase-fan"> </button>
         <div class="position-absolute" id="levelfan">
             <div class="progress-container">
                 <div class="square"></div>
@@ -210,13 +38,7 @@
             </div>
         </div>
     </div>
-    <!-- <div class="img-wrapper text-center w-100 mw-500">
-        
-    </div> -->
-
-
     <script src="./assests/js/main.js"> </script>
-
 </body>
 
 </html>
